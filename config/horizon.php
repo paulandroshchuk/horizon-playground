@@ -180,7 +180,7 @@ return [
                 'connection' => 'redis',
                 'queue' => ['default', 'main'],
                 'balance' => 'simple',
-                'processes' => 100,
+                'processes' => 350,
                 'tries' => 1,
             ],
         ],

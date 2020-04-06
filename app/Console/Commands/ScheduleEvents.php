@@ -41,7 +41,7 @@ class ScheduleEvents extends Command
     {
         $jobs = [];
 
-        foreach (range(100, rand(150, 10000)) as $item) {
+        foreach (range(1009, rand(7000, 50000)) as $item) {
             $jobs[] = new ProcessEvent();
         }
 
