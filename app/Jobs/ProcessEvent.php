@@ -14,14 +14,16 @@ class ProcessEvent implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $sleep;
+
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param int $sleep
      */
-    public function __construct()
+    public function __construct(int $sleep = 0)
     {
-        //
+        $this->sleep = $sleep;
     }
 
     /**
@@ -31,6 +33,8 @@ class ProcessEvent implements ShouldQueue
      */
     public function handle()
     {
+        sleep($this->sleep);
+
         Event::create([
             'user_id'      => rand(1, 1000),
             'number_id'    => rand(1, 1000),

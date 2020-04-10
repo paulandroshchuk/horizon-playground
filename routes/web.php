@@ -1,5 +1,7 @@
 <?php
 
+use App\Jobs\ProcessEvent;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/dispatch', function () {
+    $jobs = [];
+
+    foreach (range(1, request('count', 1)) as $item) {
+        $jobs[] = new ProcessEvent(request('sleep', 0));
+    }
+
+    Queue::bulk($jobs, null, 'main');
+
+    return 'done';
 });
